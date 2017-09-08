@@ -12,7 +12,21 @@
 // with the animal as the context, and 'Trogdor' as a parameter.
 // return the result of your updateAnimal invocation
 
-// CODE HERE...
+var callBinding = function(magicAnimals, updateAnimal, id) {
+  console.log(magicAnimals)
+  this.id = id;
+  for (var i=0; i<magicAnimals.length; i++) {
+    console.log("basic stuff")
+    for (var key in id) {
+      console.log("stops working here")
+      if (magicAnimals[i][key] === magicAnimals[i].id) {
+        console.log("you're doing something")
+        updateAnimal.magicAnimals('Trogdor');
+      }
+    }
+  }
+  return magicAnimals;
+}
 
 
 
@@ -27,7 +41,16 @@
 // with the context of the animal, and the array ['being majestic', 'eating rainbows'] as a parameter.
 // return the result of your updateAnimal invocation
 
-// CODE HERE...
+var applyBinding =  function(magicAnimals, updateAnimal, id) {
+  //console.log(updateAnimal)
+  for (var key in id) {
+    if (magicAnimals[key] === magicAnimals[id]) {
+      updateAnimal(['being majestic', 'eating rainbows']);
+    }
+  }
+  //console.log(magicAnimals)
+  return magicAnimals;
+}
 
 
 
@@ -47,7 +70,14 @@
 
 var foo;
 
-// CODE HERE...
+var promiseMe = function($q) {
+  var promise = new Promise(function(resp, rej) {
+    setTimeout(function() {
+      resp('bar');
+    }, 20);
+  })
+  return promise;
+}
 
 
 
@@ -63,4 +93,11 @@ var foo;
 // Make an array of emails (array of strings) from the returned data (You will need to console log or debug to figure this out),
 // and then resolve the array as you complete your promise.
 
-// CODE HERE...
+var emailList = function($q, $http) {
+  var promise = new Promise(function(resp, rej) {
+    $http.get('/api/users').then(function() {
+      return $q;
+    })
+  })
+  return promise;
+}

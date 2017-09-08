@@ -34,18 +34,25 @@
 // In the second .then function you use, assign the third user object
 // to the variable 'thirdUser' (previously declared) and then return the tenth user object.
 
-var firstUser = 'don\'t touch this string!';
-var thirdUser = 'don\'t touch this string, either!';
 
-function noWeakLink() {
-
-  return $http({
-    method: 'GET',
-    url: '/api/users'
-  })
-  // CODE HERE...
-
-}
+// NOTE: Commented out so the rest of the functions work
+// var firstUser = 'don\'t touch this string!';
+// var thirdUser = 'don\'t touch this string, either!';
+//
+// function noWeakLink() {
+//
+//   return $http({
+//     method: 'GET',
+//     url: '/api/users'
+//   })
+//   .then(function(firstUser) {
+//     return $http.get(firstUser.data[0]);
+//   });
+//   .then(function(thirdUser) {
+//     return $http.get(thirdUser.data[9]);
+//   })
+//
+// }
 
 
 
@@ -73,7 +80,8 @@ function large() {
 
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
-// CODE HERE...
+
+var boundToElephant = large.bind(elephant)
 
 
 
@@ -87,7 +95,9 @@ function large() {
 // Use explicit binding to give capacity the context of crew
 // and return the bound function.
 
-// CODE HERE...
+var deathStar = function(capacity, crew) {
+  return capacity.bind(crew);
+}
 
 
 
@@ -102,7 +112,11 @@ function large() {
 // The closure function will take in a parameter: liabilities (Number)
 // The closure function will return the combined value of assets and liabilities.
 
-// CODE HERE...
+var accountingOffice = function(assets) {
+  return function closure(liabilities) {
+    return assets + liabilities;
+  }
+}
 
 
 
@@ -127,9 +141,13 @@ function large() {
 //     remember: << array of items to be remembered >>
 // };
 
-// CODE HERE...
-
-
+var forgetter = function(name) {
+  var rememberall = function(item) {
+    this.name = name;
+    this.remember = item.push(item);
+  }
+  return rememberall;
+}
 
 // *************
 // * PROBLEM 6 *
@@ -155,4 +173,7 @@ function large() {
 
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
-// CODE HERE...
+var frodo = function(startingHungerValue, startingDangerValue) {
+  this.startingHungerValue = startingHungerValue;
+  this.startingDangerValue = startingDangerValue;
+}
